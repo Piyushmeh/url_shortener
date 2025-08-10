@@ -8,7 +8,7 @@ export default function App() {
 
   const handleShorten = async () => {
     try {
-      const res = await axios.post("https://url-shortener-aiq7.onrender.com", { longUrl });
+      const res = await axios.post("https://url-shortener-duk6.onrender.com", { longUrl });
       setShortUrl(res.data.shortUrl);
     } catch (err) {
       alert("Error shortening URL");
