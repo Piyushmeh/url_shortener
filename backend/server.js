@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGO_URI, {
 }).then(() => console.log('✅ MongoDB Connected'))
   .catch(err => console.error(err));
 
-// POST /api/shorten
+
 app.post('/api/shorten', async (req, res) => {
   const { longUrl } = req.body;
 
@@ -37,7 +37,7 @@ app.post('/api/shorten', async (req, res) => {
   }
 });
 
-// GET /:shortcode
+
 app.get('/:shortcode', async (req, res) => {
   try {
     const url = await Url.findOne({ shortCode: req.params.shortcode });
@@ -53,7 +53,7 @@ app.get('/:shortcode', async (req, res) => {
   }
 });
 
-// Admin - List all URLs
+
 app.get('/api/admin/urls', async (req, res) => {
   try {
     const urls = await Url.find().sort({ createdAt: -1 });
