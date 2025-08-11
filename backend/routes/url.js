@@ -13,12 +13,19 @@ router.post("/shorten", async (req, res) => {
   }
 
   try {
-    const urlCode = shortid.generate();
-    const shortUrl = `${req.protocol}://${req.get("host")}/${urlCode}`;
+    // Check if URL already exists
+    const existingUrl = await Url.findOne({ longUrl });
+    if (existingUrl) {
+      return res.json(existingUrl);
+    }
+
+    const shortCode = shortid.generate(); // Rename for clarity
+    const shortUrl = `${req.protocol}://${req.get("host")}/${shortCode}`;
 
     const newUrl = new Url({
       longUrl,
       shortUrl,
+      shortCode, // Add this field
     });
 
     await newUrl.save();
@@ -32,7 +39,7 @@ router.post("/shorten", async (req, res) => {
 // Redirect to long URL
 router.get("/:code", async (req, res) => {
   try {
-    const url = await Url.findOne({ shortUrl: { $regex: req.params.code } });
+    const url = await Url.findOne({ shortCode: req.params.code }); // Fix this line
 
     if (url) {
       return res.redirect(url.longUrl);

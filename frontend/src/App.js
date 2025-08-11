@@ -57,7 +57,7 @@ function App() {
           <button type="submit" style={{
             width: "100%",
             padding: "12px",
-            backgroundColor: "#4CAF50",
+            backgroundColor: "#2584ddff",
             color: "white",
             border: "none",
             borderRadius: "6px",
@@ -72,7 +72,7 @@ function App() {
           <div style={{ marginTop: "20px" }}>
             <p style={{ color: "#555" }}>Short URL:</p>
             <a href={shortUrl} target="_blank" rel="noopener noreferrer" style={{
-              color: "#4CAF50",
+              color: "#3679d7ff",
               fontWeight: "bold",
               textDecoration: "none"
             }}>
